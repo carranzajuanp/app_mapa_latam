@@ -76,15 +76,36 @@ ui <- fluidPage(
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border-radius: 5px;
       }
-      /* --- SE ELIMINARON LOS ESTILOS PARA EL FOOTER --- */
+      /* --- NUEVOS ESTILOS PARA EL FOOTER PERSONALIZADO --- */
+      .app-footer-personalizado {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        background-color: #f0f0f0; /* Un color de fondo claro */
+        border-top: 1px solid #e0e0e0; /* Un borde superior sutil */
+        flex-shrink: 0; /* Evita que el footer se encoja */
+        box-sizing: border-box; /* Asegura que padding y border se incluyan en el width/height */
+        font-size: 0.9em;
+        color: #555;
+      }
+      .app-footer-personalizado a {
+        color: #007bff; /* Color azul para el enlace */
+        text-decoration: none; /* Sin subrayado por defecto */
+      }
+      .app-footer-personalizado a:hover {
+        text-decoration: underline; /* Subrayado al pasar el mouse */
+      }
     "))
   ), 
   
   titlePanel("Carga de datos - Mapa de Valores del Suelo de América Latina"),
   
-  leafletOutput("map", height = "100%") # El mapa toma el espacio restante
+  leafletOutput("map", height = "100%"), # El mapa toma el espacio restante
   
-  # --- SE ELIMINÓ EL BLOQUE tags$footer ---
+  # --- NUEVO: Pie de página con el texto y enlace ---
+  tags$footer(class = "app-footer-personalizado",
+              HTML("Desarrollado por Juan Pablo Carranza (<a href='https://github.com/carranzajuanp/app_mapa_latam' target='_blank'>https://github.com/carranzajuanp/app_mapa_latam</a>)")
+  )
 )
 
 # --- SERVER (Lógica del Servidor) ---
